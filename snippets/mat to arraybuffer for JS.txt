@@ -1,0 +1,10 @@
+cv::Mat im(10, 10, CV_8UC3);
+//calculate size of arraybuf
+int size = (int)im.total() * im.channels();		
+pp::VarArrayBuffer arr(size);
+//allocate arraybuff to our space, and get a pointer.
+uint8_t* arrBuf = static_cast<uint8_t*>(arr.Map());
+//copy contents of Mat buffer to JS arraybuffer
+memcpy(arrBuf, im.data, size);
+//chuck it to JS, arraybuffer should be deallocated from our space
+PostMessage(arr);

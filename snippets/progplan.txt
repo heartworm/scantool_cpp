@@ -1,0 +1,46 @@
+Image {
+	number: int 0 indexed page number,
+	uid: string unique id incase user reorders pages,
+	data: Uint8ClampedArrayBuffer in RGBA order,
+	height: int height,
+	width: int width,
+	corners: {
+		tlx
+		tly
+		blx
+		bly
+		trx
+		try
+		brx
+		bry
+	}
+	
+}
+
+Preferences {
+	//Corner Finder
+	RHO_VAL_NO,
+	THETA_RESOLUTION,
+	MIN_LINE_LENGTH_FRAC,
+	MAX_LINE_GAP_FRAC,
+	VOTE_THRESHOLD,
+	MEDIAN_BLUR_SIZE,
+	MORPH_GRADIENT_SIZE,
+	MIN_ANGLE,
+	CLUSTER_BOUND,
+
+	//Colour
+	COLOUR_MODE,
+	COLOUR_THRESH
+}
+
+Message {
+	command: one of - corners, deskew, preferences, 
+}
+
+c++
+	My objects will always implement method getppvar which will return a pp::var, varDictionary, varArray, or varArrayBuffer
+	
+	Program will have queue for commands
+	Program will have background thread containing loop to execute commands in queue
+	Program will have 

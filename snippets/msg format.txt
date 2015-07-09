@@ -1,0 +1,51 @@
+Exception Message - Backend -> JS
+{
+	command: "error",
+	type: "InvalidCmdException" or any other...
+	what: exception's what() method
+}
+
+Image Command Message - JS -> Backend
+{
+	command: "deskew, corners"
+	image: {
+		number: page number
+		hash: Base64 of SHA1 Hash of the data ArrayBuffer. 
+			User can change image during async call to the backend. This makes sure the image is the same!
+		data: ArrayBuffer of RGBA data
+		height, width: i wonder what these are
+		corners: {
+			trx, try, brx, bry, tlx, tly, blx, bly
+			// trx = top right corner's x coordinate
+		}
+		
+	}
+}
+
+Image Update Message - Backend -> JS after successful completion of command
+
+For corners command:
+{
+	command: "update"
+	image: {
+		number: page number
+		hash: Base64 of SHA1 Hash of the data ArrayBuffer. 
+		cornersErr: "e.what() for the exception" - perhaps for mouseover of the error?
+		cornersStatus: FAILED, SUCCESS, 
+		corners: if true the corners found, else if false just the extremes of the picture
+	}
+}
+
+For deskew command:
+{
+	command: "update"
+	image: {
+		number: page number
+		hash: Base64 of SHA1 Hash of the ORIGINAL data ArrayBuffer. 
+		deskewedData: ArrayBuffer of RGBA data of deskewed image
+		deskewedHeight, deskewedWidth: solved using pythagoras on the corners. 
+		deskewedStatus;
+	}
+}
+
+

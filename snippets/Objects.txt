@@ -1,0 +1,22 @@
+Objects in JS
+
+Image {
+	fileName
+	dateModified
+	number: page number
+	width, height
+	hash: base64 string SHA1 of data
+	canvas: canvas generated from image,
+	data:
+	imageLoadStatus
+	deskewData
+	deskewHeight
+	deskewWidth
+	deskewStatus
+	corners
+	cornersStatus
+}
+
+enum Status {
+	SUCCESS, PROCESSING, FAILED, INITIAL
+}
