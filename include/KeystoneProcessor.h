@@ -6,7 +6,7 @@
 
 class KeystoneProcessor {
 public:
-	static void process(cv::Mat &src, cv::Mat &dst, Corners c);
+	static cv::Mat process(cv::Mat &src, Corners corners);
 private:
 	static double magnitude(cv::Point2f a, cv::Point2f b);
 };

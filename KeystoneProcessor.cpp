@@ -1,13 +1,15 @@
 #include "KeystoneProcessor.h"
 
-void KeystoneProcessor::process(cv::Mat &src, cv::Mat &dst, Corners c) {
+cv::Mat KeystoneProcessor::process(cv::Mat &src, Corners corners) {
 	using namespace cv;
 	double width = max(magnitude(corners.tl, corners.tr), magnitude(corners.bl, corners.br));
 	double height = max(magnitude(corners.tl, corners.bl), magnitude(corners.tr, corners.br));
+	Mat dst(height, width, src.type());
 	Point2f cnrs[] = { corners.tl, corners.tr, corners.br, corners.bl };
 	Point2f dsts[] = { Point2f(0, 0), Point2f(width, 0), Point2f(width, height), Point2f(0, height) };
 	Mat transform = getPerspectiveTransform(cnrs, dsts);
-	warpPerspective(m, d, transform, Size(width, height));
+	warpPerspective(src, dst, transform, Size(width, height));
+	return dst;
 }
 
 double KeystoneProcessor::magnitude(cv::Point2f a, cv::Point2f b) { //pythag

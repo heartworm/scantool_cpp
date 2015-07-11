@@ -12,9 +12,9 @@ all: app.pexe
 app.pexe: app.bc
 	$(NACL_TC)/pnacl-finalize -o app.pexe app.bc
 
-app.bc: MainModule.o MainInstance.o Processor.o ImageCommand.o CornerFinder.o Preferences.o Corners.o
+app.bc: MainModule.o MainInstance.o Processor.o ImageCommand.o CornerFinder.o KeystoneProcessor.o Preferences.o Corners.o
 	$(CC) MainModule.o MainInstance.o Processor.o \
-		ImageCommand.o CornerFinder.o Preferences.o Corners.o -o app.bc $(INCLUDES) $(LIBPATHS) $(LIBS)
+		ImageCommand.o CornerFinder.o KeystoneProcessor.o Preferences.o Corners.o -o app.bc $(INCLUDES) $(LIBPATHS) $(LIBS)
 	
 MainModule.o: MainModule.cpp
 	$(CC) MainModule.cpp -c -o MainModule.o $(INCLUDES) $(LIBPATHS) $(LIBS)
@@ -30,6 +30,9 @@ ImageCommand.o: ImageCommand.cpp
 
 CornerFinder.o: CornerFinder.cpp
 	$(CC) CornerFinder.cpp -c -o CornerFinder.o $(INCLUDES) $(LIBPATHS) $(LIBS)
+
+KeystoneProcessor.o: KeystoneProcessor.cpp
+	$(CC) KeystoneProcessor.cpp -c -o KeystoneProcessor.o $(INCLUDES) $(LIBPATHS) $(LIBS)
 	
 Preferences.o: Preferences.cpp
 	$(CC) Preferences.cpp -c -o Preferences.o $(INCLUDES) $(LIBPATHS) $(LIBS)

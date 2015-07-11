@@ -16,6 +16,7 @@
 #include "InvalidCmdException.h"
 #include "CornerFinder.h"
 #include "Corners.h"
+#include "KeystoneProcessor.h"
 
 using string = std::string;
 

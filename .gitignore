@@ -44,3 +44,6 @@ Temporary Items
 
 #large files
 libraries/
+app.bc
+app.pexe
+*.o
