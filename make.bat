@@ -8,6 +8,6 @@ pause
 exit
 
 :success
-xcopy app.pexe ..\www\app.pexe /Y
-xcopy app.bc ..\www\app.bc /Y
+REM xcopy app.pexe ..\www\app.pexe /Y
+REM xcopy app.bc ..\www\app.bc /Y
 pause
